@@ -1,4 +1,4 @@
-#Blending images using Power Weighted Mean
+# Blending images using Power Weighted Mean
 
 A simple tool to take in a directory of content images and style images and blend them using power weighted mean acc to [Grundland06](http://eyeimaginary.com/Portfolio/Publications.html). 
 Preserves local contrast better.
