@@ -80,14 +80,16 @@ def build_parser():
     parser = ap.ArgumentParser()
     parser.add_argument('-ic', dest='content_img', help='Content image directory')
     parser.add_argument('-is', dest='style_img', help='Style/Attribute Image directory')
-    parser.add_argument('--param_file', help='Path to parameter file')
     parser.add_argument('--blend_type', help='Blend type: (poisson_blend, pwm : power_weighted_mean)', default='pwm')
+    parser.add_argument('--alpha', dest='alpha', help='Weight for the content image', default=0.5)
+    parser.add_argument('--rho', dest='rho', help='Exponent for powere weighing', default=2)
     return parser 
 
 if __name__ == '__main__':
     args = build_parser().parse_args()
-    with open(args.param_file, 'r') as f:
-        params = json.load(f)
+    params = {}
+    params['weight'] = args.alpha
+    params['rho'] = args.rho
     for r1,_,f1 in os.walk(args.content_img):
         for file1 in f1:
             for r2,_,f2 in os.walk(args.style_img):
